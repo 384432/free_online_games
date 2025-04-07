@@ -1,0 +1,46 @@
+{
+    "en": {
+        "analytics": {
+            "prompt": "Want to help improve the site? Allow us to collect anonymous usage data to enhance your gaming experience.",
+            "learnMore": "Learn more",
+            "yes": "Allow",
+            "no": "Not now",
+            "privacyPolicy": "Privacy Policy"
+        },
+        "favorites": {
+            "addToFavorites": "Add to favorites",
+            "removeFromFavorites": "Remove from favorites",
+            "empty": "No favorite games yet"
+        },
+        "categories": {
+            "Favorites": "Your Favorites"
+        },
+        "loading": {
+            "loadingStatus": "Loading... {current}/{total} games displayed",
+            "loadMore": "Loading more games...",
+            "allLoaded": "All games loaded"
+        }
+    },
+    "zh": {
+        "analytics": {
+            "prompt": "想帮助改进网站？允许我们收集匿名使用数据来提升游戏体验。",
+            "learnMore": "了解更多",
+            "yes": "允许",
+            "no": "暂不允许",
+            "privacyPolicy": "隐私政策"
+        },
+        "favorites": {
+            "addToFavorites": "添加到收藏",
+            "removeFromFavorites": "取消收藏",
+            "empty": "暂无收藏游戏"
+        },
+        "categories": {
+            "Favorites": "我的收藏"
+        },
+        "loading": {
+            "loadingStatus": "正在加载... 已显示 {current}/{total} 个游戏",
+            "loadMore": "正在加载更多游戏...",
+            "allLoaded": "已加载全部游戏"
+        }
+    }
+} 

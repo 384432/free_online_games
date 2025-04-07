@@ -1,0 +1,1834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play free online games instantly! Browse our collection of casual games, puzzle games, arcade games and more. No downloads required - play directly in your browser.">
+    <meta name="keywords" content="online games, free games, browser games, casual games, arcade games">
+    <meta name="author" content="Free Online Games">
+    <meta name="theme-color" content="#0066cc">
+    
+    <!-- OpenGraph Tags -->
+    <meta property="og:title" content="Free Online Games">
+    <meta property="og:description" content="Play free online games instantly in your browser. No downloads required!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/games">
+    <meta property="og:image" content="https://yourdomain.com/images/og-default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Online Games">
+    <meta name="twitter:description" content="Play free online games instantly in your browser. No downloads required!">
+    <meta name="twitter:image" content="https://yourdomain.com/images/og-default.jpg">
+    
+    <!-- JSON-LD -->
+    <script type="application/ld+json" id="jsonLd">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Free Online Games",
+        "url": "https://yourdomain.com",
+        "description": "Play free online games instantly in your browser. No downloads required!",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://yourdomain.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+
+    <title>Free Online Games</title>
+    <link rel="canonical" href="https://yourdomain.com/games" id="canonicalUrl" />
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Games">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --apple-text: #1d1d1f;
+            --apple-link: #0066cc;
+            --apple-gray: #86868b;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --search-bg: #f5f5f7;
+            --hover-transform: scale(1.02);
+            --container-padding: 20px;
+            --tag-bg: #f5f5f7;
+            --tag-selected-bg: #e3e3e5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: var(--container-padding);
+            background: #ffffff;
+            color: var(--apple-text);
+            line-height: 1.5;
+            min-width: 320px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 700;
+            margin: 40px 0;
+        }
+
+        .search-section {
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .filters-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .search-history {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+            min-height: 30px;
+        }
+
+        .history-tag {
+            font-size: 13px;
+            padding: 4px 12px;
+            background: var(--search-bg);
+            border-radius: 15px;
+            color: var(--apple-text);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .history-tag:hover {
+            background: #e5e5e7;
+        }
+
+        mark {
+            background-color: rgba(255, 204, 0, 0.3);
+            padding: 0 2px;
+            border-radius: 2px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 12px;
+            background: var(--search-bg);
+            color: var(--apple-text);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .categories-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .category-label {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: var(--tag-bg);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .category-label:hover {
+            background: var(--tag-selected-bg);
+        }
+
+        .category-checkbox {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .category-checkbox:checked + .category-label {
+            background: var(--tag-selected-bg);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-icon {
+            margin-right: 8px;
+            font-size: 14px;
+            width: 16px;
+            text-align: center;
+        }
+
+        .category-count {
+            margin-left: 6px;
+            font-size: 12px;
+            color: var(--apple-gray);
+        }
+
+        .games-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 200px;
+            height: calc(100vh - 200px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .games-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 30px 0;
+        }
+
+        .game-placeholder {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: var(--search-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--apple-gray);
+        }
+
+        .game-placeholder i {
+            font-size: 24px;
+            opacity: 0.5;
+        }
+
+        .game-card {
+            position: relative;
+            background: #fff;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            transform: translateZ(0);
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: var(--hover-transform);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-card.hidden {
+            display: none;
+        }
+
+        .game-card h2 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+            color: var(--apple-text);
+        }
+
+        .intro {
+            color: var(--apple-gray);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .game-frame {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            background: var(--search-bg);
+        }
+
+        .description {
+            font-size: 14px;
+            color: var(--apple-text);
+            line-height: 1.6;
+        }
+
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--search-bg);
+            border-radius: 50%;
+            border-top-color: var(--apple-link);
+            animation: spin 1s linear infinite;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: var(--apple-gray);
+            font-size: 18px;
+            display: none;
+        }
+
+        .no-results.visible {
+            display: block;
+        }
+
+        .no-results-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --container-padding: 10px;
+            }
+
+            body {
+                padding: var(--container-padding);
+            }
+
+            h1 {
+                font-size: 32px;
+                margin: 20px 0;
+                word-break: break-word;
+            }
+
+            .search-section {
+                padding: 0 var(--container-padding);
+            }
+
+            .filters-container {
+                flex-direction: column;
+            }
+
+            .search-history {
+                margin-top: 10px;
+            }
+
+            .history-tag {
+                font-size: 12px;
+                padding: 3px 10px;
+            }
+
+            .search-input,
+            .categories-container {
+                width: 100%;
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 var(--container-padding);
+            }
+
+            .game-frame {
+                aspect-ratio: 4/3;
+                min-height: 200px;
+            }
+
+            .game-card {
+                margin: 0;
+            }
+
+            .game-card:hover {
+                transform: none;
+            }
+
+            .game-card h2 {
+                font-size: 20px;
+                word-break: break-word;
+            }
+
+            .intro {
+                font-size: 14px;
+            }
+
+            .description {
+                font-size: 13px;
+            }
+
+            .categories-container {
+                gap: 8px;
+            }
+
+            .category-label {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+
+            .category-icon {
+                font-size: 12px;
+                width: 14px;
+            }
+
+            .category-count {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .game-frame {
+                min-height: 180px;
+            }
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            width: 80%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 15px;
+            background: var(--search-bg);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            color: var(--apple-text);
+        }
+
+        .modal-close:hover {
+            background: var(--tag-selected-bg);
+        }
+
+        .modal-game-frame {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+            border-radius: 12px;
+            margin: 20px 0;
+            background: var(--search-bg);
+        }
+
+        .modal-title {
+            font-size: 32px;
+            margin: 0 0 20px 0;
+            padding-right: 40px;
+        }
+
+        .modal-description {
+            color: var(--apple-text);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            white-space: pre-line;
+        }
+
+        .rating-section {
+            border-top: 1px solid var(--search-bg);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .rating-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .average-rating {
+            color: var(--apple-gray);
+            font-size: 14px;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 5px;
+        }
+
+        .star-btn {
+            background: none;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            font-size: 24px;
+            color: #ffd700;
+            transition: all 0.2s ease;
+            line-height: 1;
+        }
+
+        .star-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .game-card {
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .modal-title {
+                font-size: 24px;
+            }
+
+            .modal-game-frame {
+                aspect-ratio: 4/3;
+            }
+
+            .star-btn {
+                font-size: 20px;
+            }
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--apple-link);
+            transition: width 0.3s ease;
+            z-index: 3000;
+        }
+
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none;
+            align-items: center;
+            gap: 15px;
+            z-index: 2000;
+            max-width: 90%;
+            width: 400px;
+        }
+
+        .install-prompt.visible {
+            display: flex;
+        }
+
+        .install-text {
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .install-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .install-button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .install-yes {
+            background: var(--apple-link);
+            color: #fff;
+        }
+
+        .install-no {
+            background: var(--search-bg);
+            color: var(--apple-text);
+        }
+
+        .install-button:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .install-prompt {
+                bottom: 10px;
+                padding: 12px 20px;
+            }
+
+            .install-text {
+                font-size: 13px;
+            }
+
+            .install-button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        .language-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--search-bg);
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--apple-text);
+            transition: all 0.2s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .language-switch:hover {
+            background: var(--tag-selected-bg);
+            transform: translateY(-1px);
+        }
+
+        .language-switch i {
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .language-switch {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 13px;
+            }
+        }
+
+        .not-found {
+            text-align: center;
+            padding: 40px;
+            max-width: 600px;
+            margin: 40px auto;
+        }
+
+        .not-found h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .not-found p {
+            color: var(--apple-gray);
+            margin-bottom: 30px;
+        }
+
+        .home-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: var(--apple-link);
+            color: #fff;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .home-link:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .favorite-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #ffd700;
+            transition: all 0.2s ease;
+            z-index: 10;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .favorite-btn:hover {
+            transform: scale(1.1);
+            background: #fff;
+        }
+
+        .favorite-btn:active {
+            transform: scale(0.95);
+        }
+
+        .favorite-btn i {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .favorite-btn.active i {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .favorite-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+            }
+        }
+
+        .loading-status {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .loading-status.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .loading-status {
+                bottom: 70px;
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="language-switch" id="languageSwitch">
+        <i class="fa-solid fa-globe"></i>
+        <span id="languageText">Switch to English</span>
+    </button>
+    <div class="progress-bar" id="progressBar"></div>
+    <h1>Free Online Games</h1>
+    <div class="search-section">
+        <div class="filters-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search games..." />
+            <div class="categories-container" id="categoriesContainer"></div>
+        </div>
+        <div class="search-history" id="searchHistory"></div>
+    </div>
+    <div class="games-container" id="gamesContainer">
+        <div class="games-grid" id="gamesGrid">
+            <div class="no-results">
+                <div class="no-results-icon">🔍</div>
+                <div>No games found</div>
+                <div style="font-size: 14px; margin-top: 10px;">Try adjusting your search or filter</div>
+            </div>
+        </div>
+    </div>
+    <div class="loading-container" id="loadingContainer">
+        <div class="loading-spinner"></div>
+    </div>
+    <div class="modal-overlay" id="gameModal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 class="modal-title"></h2>
+            <iframe class="modal-game-frame" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups allow-forms" loading="lazy"></iframe>
+            <div class="modal-description"></div>
+            <div class="rating-section">
+                <div class="rating-title">
+                    Rate this game
+                    <span class="average-rating"></span>
+                </div>
+                <div class="star-rating"></div>
+            </div>
+        </div>
+    </div>
+    <div class="install-prompt" id="installPrompt">
+        <div class="install-text">
+            Install this app on your device for quick access and offline use
+        </div>
+        <div class="install-buttons">
+            <button class="install-button install-yes" id="installYes">Install</button>
+            <button class="install-button install-no" id="installNo">Not now</button>
+        </div>
+    </div>
+    <div class="loading-status" id="loadingStatus"></div>
+
+    <script>
+        let gamesData = [];
+        let currentSearchTerm = '';
+        let selectedCategories = new Set();
+        let searchHistory = [];
+        let gameRatings = {};
+        let virtualScroll = {
+            itemHeight: 400, // 预估的卡片高度
+            visibleItems: 20, // 可见卡片数量
+            startIndex: 0,
+            endIndex: 19,
+            totalHeight: 0,
+            observer: null
+        };
+        let deferredPrompt;
+        let translations = {};
+        let currentLanguage = 'en';
+        let favoriteGames = new Set();
+
+        // 分类图标映射
+        const categoryIcons = {
+            'Adventure': 'fa-hat-wizard',
+            'Puzzle': 'fa-puzzle-piece',
+            'Action': 'fa-gamepad',
+            'Strategy': 'fa-chess',
+            'Sports': 'fa-basketball',
+            'Racing': 'fa-car-side',
+            'RPG': 'fa-dragon',
+            'Shooter': 'fa-crosshairs',
+            'Arcade': 'fa-joystick',
+            'Card': 'fa-cards',
+            'Board': 'fa-chess-board',
+            'Educational': 'fa-graduation-cap',
+            'Music': 'fa-music',
+            'Simulation': 'fa-robot',
+            'Word': 'fa-font',
+            'Casual': 'fa-star'
+        };
+
+        // 获取分类的图标
+        function getCategoryIcon(category) {
+            return categoryIcons[category] || 'fa-tag';
+        }
+
+        // 统计每个分类的游戏数量
+        function getCategoryCounts(games) {
+            const counts = {};
+            games.forEach(game => {
+                if (validateGameData(game)) {
+                    counts[game.tags] = (counts[game.tags] || 0) + 1;
+                }
+            });
+            return counts;
+        }
+
+        // 更新分类UI
+        function updateCategories(games) {
+            const categories = new Set(['Favorites', ...games.filter(game => validateGameData(game)).map(game => game.tags)]);
+            const counts = getCategoryCounts(games);
+            const container = document.getElementById('categoriesContainer');
+            
+            // 添加收藏数量
+            counts['Favorites'] = favoriteGames.size;
+            
+            container.innerHTML = Array.from(categories)
+                .filter(category => category)
+                .map(category => `
+                    <div class="category-item">
+                        <input type="checkbox" 
+                            id="category-${category}" 
+                            class="category-checkbox" 
+                            value="${category}"
+                            ${category === 'Favorites' ? 'data-is-favorites="true"' : ''}
+                        />
+                        <label class="category-label" for="category-${category}">
+                            <i class="fa-solid ${category === 'Favorites' ? 'fa-star' : getCategoryIcon(category)} category-icon"></i>
+                            ${t(category, 'categories')}
+                            <span class="category-count">(${counts[category]})</span>
+                        </label>
+                    </div>
+                `).join('');
+            
+            // 添加事件监听
+            container.querySelectorAll('.category-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', (e) => {
+                    const isFavorites = e.target.dataset.isFavorites;
+                    
+                    if (e.target.checked) {
+                        if (isFavorites) {
+                            // 选中收藏时取消其他分类
+                            selectedCategories.clear();
+                        } else {
+                            // 选中其他分类时取消收藏
+                            selectedCategories.delete('Favorites');
+                        }
+                        selectedCategories.add(e.target.value);
+                    } else {
+                        selectedCategories.delete(e.target.value);
+                    }
+                    
+                    filterGames();
+                });
+            });
+        }
+
+        function filterGames() {
+            const term = currentSearchTerm.toLowerCase();
+            const cards = document.querySelectorAll('.game-card');
+            const noResults = document.querySelector('.no-results');
+            let visibleCount = 0;
+            
+            cards.forEach((card, index) => {
+                const game = gamesData[index];
+                if (!validateGameData(game)) return;
+                
+                const searchableText = `${game.title} ${game.description}`.toLowerCase();
+                const matchesSearch = searchableText.includes(term);
+                const matchesCategory = selectedCategories.size === 0 || selectedCategories.has(game.tags);
+                
+                if (matchesSearch && matchesCategory) {
+                    const intro = game.description.split('.')[0] + '.';
+                    card.innerHTML = `
+                        <h2>${highlightText(game.title, currentSearchTerm)}</h2>
+                        <div class="intro">${highlightText(intro, currentSearchTerm)}</div>
+                        <iframe class="game-frame" 
+                            src="${game.game_url}" 
+                            title="${game.title} - ${currentLanguage === 'zh' ? '在线游戏' : 'Play Online'}"
+                            allowfullscreen
+                            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                            loading="lazy"
+                        ></iframe>
+                        <div class="description">${highlightText(game.description, currentSearchTerm)}</div>
+                    `;
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.classList.add('visible');
+            } else {
+                noResults.classList.remove('visible');
+            }
+        }
+
+        // 从localStorage加载搜索历史
+        function loadSearchHistory() {
+            try {
+                const saved = localStorage.getItem('gameSearchHistory');
+                searchHistory = saved ? JSON.parse(saved) : [];
+            } catch (e) {
+                searchHistory = [];
+            }
+            updateSearchHistoryUI();
+        }
+
+        // 保存搜索历史到localStorage
+        function saveSearchHistory(term) {
+            if (!term.trim()) return;
+            
+            searchHistory = searchHistory.filter(item => item !== term);
+            searchHistory.unshift(term);
+            
+            if (searchHistory.length > 5) {
+                searchHistory = searchHistory.slice(0, 5);
+            }
+            
+            try {
+                localStorage.setItem('gameSearchHistory', JSON.stringify(searchHistory));
+            } catch (e) {
+                console.warn('Failed to save search history:', e);
+            }
+            
+            updateSearchHistoryUI();
+        }
+
+        // 更新搜索历史UI
+        function updateSearchHistoryUI() {
+            const container = document.getElementById('searchHistory');
+            container.innerHTML = searchHistory
+                .map(term => `<button class="history-tag" data-term="${term}">${term}</button>`)
+                .join('');
+                
+            // 添加点击事件
+            container.querySelectorAll('.history-tag').forEach(tag => {
+                tag.addEventListener('click', () => {
+                    const term = tag.dataset.term;
+                    document.getElementById('searchInput').value = term;
+                    currentSearchTerm = term;
+                    filterGames();
+                });
+            });
+        }
+
+        // 安全地转义HTML特殊字符
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // 高亮文本中的搜索词
+        function highlightText(text, searchTerm) {
+            if (!searchTerm.trim()) return escapeHtml(text);
+            
+            const escapedText = escapeHtml(text);
+            const escapedSearchTerm = escapeHtml(searchTerm);
+            const regex = new RegExp(`(${escapedSearchTerm})`, 'gi');
+            
+            return escapedText.replace(regex, '<mark>$1</mark>');
+        }
+
+        // 验证游戏数据结构
+        function validateGameData(game) {
+            return game 
+                && typeof game.title === 'string'
+                && typeof game.description === 'string'
+                && typeof game.game_url === 'string'
+                && typeof game.tags === 'string';
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // 加载评分数据
+        function loadRatings() {
+            try {
+                const saved = localStorage.getItem('gameRatings');
+                gameRatings = saved ? JSON.parse(saved) : {};
+            } catch (e) {
+                gameRatings = {};
+            }
+        }
+
+        // 保存评分数据
+        function saveRating(gameId, rating) {
+            gameRatings[gameId] = rating;
+            try {
+                localStorage.setItem('gameRatings', JSON.stringify(gameRatings));
+            } catch (e) {
+                console.warn('Failed to save rating:', e);
+            }
+        }
+
+        // 获取游戏评分
+        function getGameRating(gameId) {
+            return gameRatings[gameId] || 0;
+        }
+
+        // 更新星级评分UI
+        function updateStarRating(gameId) {
+            const container = document.querySelector('.star-rating');
+            const currentRating = getGameRating(gameId);
+            
+            container.innerHTML = Array.from({length: 5}, (_, i) => i + 1)
+                .map(star => `
+                    <button class="star-btn" data-rating="${star}" aria-label="${t('rateThis', 'modal')} ${star} ${t('stars', 'modal')}">
+                        <i class="fa-${star <= currentRating ? 'solid' : 'regular'} fa-star"></i>
+                    </button>
+                `).join('');
+
+            container.querySelectorAll('.star-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const rating = parseInt(btn.dataset.rating);
+                    saveRating(gameId, rating);
+                    updateStarRating(gameId);
+                });
+            });
+        }
+
+        // 路由相关变量
+        let currentGame = null;
+        const routes = {
+            home: '/',
+            game: '/game'
+        };
+
+        // 生成URL友好的slug
+        function generateSlug(title) {
+            return title
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '');
+        }
+
+        // 更新页面元数据
+        function updateMetadata(game = null) {
+            const title = game ? `${game.title} - Free Online Games` : 'Free Online Games';
+            const description = game ? game.description : document.querySelector('meta[name="description"]').content;
+            const url = game ? `https://yourdomain.com/game/${generateSlug(game.title)}` : 'https://yourdomain.com';
+            const image = game?.cover_image || 'https://yourdomain.com/images/og-default.jpg';
+
+            // 更新标题和canonical URL
+            document.title = title;
+            document.getElementById('canonicalUrl').href = url;
+
+            // 更新OpenGraph标签
+            document.querySelector('meta[property="og:title"]').content = title;
+            document.querySelector('meta[property="og:description"]').content = description;
+            document.querySelector('meta[property="og:url"]').content = url;
+            document.querySelector('meta[property="og:image"]').content = image;
+
+            // 更新Twitter Card标签
+            document.querySelector('meta[name="twitter:title"]').content = title;
+            document.querySelector('meta[name="twitter:description"]').content = description;
+            document.querySelector('meta[name="twitter:image"]').content = image;
+
+            // 更新JSON-LD
+            const jsonLd = {
+                "@context": "https://schema.org",
+                "@type": game ? "VideoGame" : "WebSite",
+                "name": title,
+                "url": url,
+                "description": description
+            };
+
+            if (game) {
+                jsonLd.genre = game.tags;
+                jsonLd.image = image;
+                jsonLd.aggregateRating = {
+                    "@type": "AggregateRating",
+                    "ratingValue": getGameRating(game.title) || 0,
+                    "ratingCount": 1,
+                    "bestRating": 5,
+                    "worstRating": 0
+                };
+            }
+
+            document.getElementById('jsonLd').textContent = JSON.stringify(jsonLd);
+        }
+
+        // 处理路由变化
+        function handleRoute() {
+            const path = window.location.pathname;
+            
+            if (path === routes.home) {
+                currentGame = null;
+                updateMetadata();
+                return;
+            }
+
+            if (path.startsWith(routes.game + '/')) {
+                const slug = path.replace(routes.game + '/', '');
+                const game = gamesData.find(g => generateSlug(g.title) === slug);
+                
+                if (game) {
+                    currentGame = game;
+                    updateMetadata(game);
+                    openGameModal(game);
+                } else {
+                    show404();
+                }
+            }
+        }
+
+        // 显示404页面
+        function show404() {
+            const container = document.getElementById('gamesContainer');
+            container.innerHTML = `
+                <div class="not-found">
+                    <h2>${t('notFound', 'errors')}</h2>
+                    <p>${t('gameNotFound', 'errors')}</p>
+                    <a href="/" class="home-link" onclick="navigateToHome(event)">
+                        <i class="fa-solid fa-home"></i>
+                        ${t('backToHome', 'navigation')}
+                    </a>
+                </div>
+            `;
+            updateMetadata();
+        }
+
+        // 导航到主页
+        function navigateToHome(event) {
+            event.preventDefault();
+            history.pushState(null, '', routes.home);
+            handleRoute();
+            loadGames();
+        }
+
+        // 修改openGameModal函数
+        function openGameModal(game) {
+            const modal = document.getElementById('gameModal');
+            const content = modal.querySelector('.modal-content');
+            
+            currentGameId = game.title;
+            
+            // 更新URL和元数据
+            if (!currentGame) {
+                const slug = generateSlug(game.title);
+                history.pushState(null, '', `${routes.game}/${slug}`);
+                updateMetadata(game);
+            }
+            
+            content.querySelector('.modal-title').textContent = game.title;
+            content.querySelector('.modal-game-frame').src = game.game_url;
+            content.querySelector('.modal-description').textContent = game.description;
+            
+            updateStarRating(game.title);
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 修改closeGameModal函数
+        function closeGameModal() {
+            const modal = document.getElementById('gameModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // 返回主页
+            if (currentGame) {
+                history.pushState(null, '', routes.home);
+                currentGame = null;
+                updateMetadata();
+            }
+            
+            // 清空iframe src以停止游戏
+            setTimeout(() => {
+                if (!modal.classList.contains('active')) {
+                    modal.querySelector('.modal-game-frame').src = '';
+                }
+            }, 300);
+        }
+
+        // 添加popstate事件监听
+        window.addEventListener('popstate', handleRoute);
+
+        // 加载配置
+        const loadConfig = {
+            batchSize: 20,
+            initialLoad: 20,
+            loadThreshold: 200, // 距离底部多少像素时触发加载
+            currentlyLoaded: 0,
+            isLoading: false
+        };
+
+        // 修改renderVisibleCards函数
+        function renderVisibleCards() {
+            const grid = document.getElementById('gamesGrid');
+            const fragment = document.createDocumentFragment();
+            const filteredGames = getFilteredGames();
+            
+            // 设置总高度以保持滚动条
+            virtualScroll.totalHeight = Math.ceil(filteredGames.length / getColumnsCount()) * virtualScroll.itemHeight;
+            grid.style.height = `${virtualScroll.totalHeight}px`;
+            
+            // 清除现有卡片
+            grid.querySelectorAll('.game-card').forEach(card => {
+                virtualScroll.observer.unobserve(card);
+                card.remove();
+            });
+            
+            // 计算要显示的游戏范围
+            const endIndex = Math.min(
+                loadConfig.currentlyLoaded,
+                filteredGames.length,
+                virtualScroll.endIndex
+            );
+            
+            // 渲染可见范围内的卡片
+            filteredGames.slice(virtualScroll.startIndex, endIndex).forEach((game, index) => {
+                const card = createGameCard(game);
+                card.style.position = 'absolute';
+                card.style.top = `${Math.floor((virtualScroll.startIndex + index) / getColumnsCount()) * virtualScroll.itemHeight}px`;
+                card.style.left = `${(index % getColumnsCount()) * (100 / getColumnsCount())}%`;
+                card.style.width = `${95 / getColumnsCount()}%`;
+                fragment.appendChild(card);
+            });
+            
+            grid.appendChild(fragment);
+            
+            // 观察新添加的卡片
+            grid.querySelectorAll('.game-card').forEach(card => {
+                virtualScroll.observer.unobserve(card);
+                virtualScroll.observer.observe(card);
+            });
+
+            // 更新加载状态提示
+            updateLoadingStatus(filteredGames.length);
+        }
+
+        // 更新加载状态提示
+        function updateLoadingStatus(totalGames) {
+            const status = document.getElementById('loadingStatus');
+            if (loadConfig.currentlyLoaded < totalGames) {
+                status.textContent = t('loadingStatus', 'loading', {
+                    current: loadConfig.currentlyLoaded,
+                    total: totalGames
+                });
+                status.classList.add('visible');
+            } else {
+                status.classList.remove('visible');
+            }
+        }
+
+        // 加载更多游戏
+        async function loadMoreGames() {
+            if (loadConfig.isLoading) return;
+            
+            const container = document.getElementById('gamesContainer');
+            const filteredGames = getFilteredGames();
+            
+            if (loadConfig.currentlyLoaded >= filteredGames.length) return;
+            
+            loadConfig.isLoading = true;
+            
+            // 模拟异步加载
+            await new Promise(resolve => setTimeout(resolve, 300));
+            
+            loadConfig.currentlyLoaded = Math.min(
+                loadConfig.currentlyLoaded + loadConfig.batchSize,
+                filteredGames.length
+            );
+            
+            renderVisibleCards();
+            loadConfig.isLoading = false;
+        }
+
+        // 修改createGameCard函数
+        function createGameCard(game) {
+            const intro = game.description.split('.')[0] + '.';
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            
+            const isFavorite = favoriteGames.has(game.title);
+            card.innerHTML = `
+                <h2>${highlightText(game.title, currentSearchTerm)}</h2>
+                <div class="intro">${highlightText(intro, currentSearchTerm)}</div>
+                <div class="game-placeholder">
+                    <i class="fa-solid fa-gamepad"></i>
+                </div>
+                <iframe class="game-frame" 
+                    data-src="${game.game_url}" 
+                    title="${game.title} - ${currentLanguage === 'zh' ? '在线游戏' : 'Play Online'}"
+                    allowfullscreen
+                    sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                    loading="lazy"
+                    style="display: none"
+                ></iframe>
+                <div class="description">${highlightText(game.description, currentSearchTerm)}</div>
+                <button class="favorite-btn ${isFavorite ? 'active' : ''}" 
+                    aria-label="${t(isFavorite ? 'removeFromFavorites' : 'addToFavorites', 'favorites')}"
+                    title="${t(isFavorite ? 'removeFromFavorites' : 'addToFavorites', 'favorites')}">
+                    <i class="fa-${isFavorite ? 'solid' : 'regular'} fa-star"></i>
+                </button>
+            `;
+            
+            // 添加收藏按钮事件
+            const favoriteBtn = card.querySelector('.favorite-btn');
+            favoriteBtn.addEventListener('click', (e) => toggleFavorite(e, game.title));
+            favoriteBtn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                toggleFavorite(e, game.title);
+            });
+            
+            // 添加卡片点击事件
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('.favorite-btn')) {
+                    openGameModal(game);
+                }
+            });
+            
+            return card;
+        }
+
+        // 修改createObserver函数
+        function createObserver() {
+            virtualScroll.observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const card = entry.target;
+                        const placeholder = card.querySelector('.game-placeholder');
+                        const iframe = card.querySelector('iframe');
+                        
+                        if (iframe && !iframe.src && iframe.dataset.src) {
+                            iframe.src = iframe.dataset.src;
+                            iframe.style.display = 'block';
+                            
+                            // 等待iframe加载完成后隐藏占位图
+                            iframe.addEventListener('load', () => {
+                                if (placeholder) {
+                                    placeholder.style.display = 'none';
+                                }
+                            });
+                        }
+                    }
+                });
+            }, {
+                root: document.getElementById('gamesContainer'),
+                rootMargin: '50px',
+                threshold: 0
+            });
+        }
+
+        // 修改滚动处理
+        const debouncedScroll = debounce(() => {
+            const container = document.getElementById('gamesContainer');
+            const scrollBottom = container.scrollTop + container.clientHeight;
+            const maxScroll = container.scrollHeight;
+            
+            updateVirtualScroll();
+            
+            // 检查是否需要加载更多
+            if (maxScroll - scrollBottom <= loadConfig.loadThreshold) {
+                loadMoreGames();
+            }
+        }, 16);
+
+        // 修改filterGames函数
+        function filterGames() {
+            // 重置加载状态
+            loadConfig.currentlyLoaded = loadConfig.initialLoad;
+            loadConfig.isLoading = false;
+            
+            // 重新渲染
+            renderVisibleCards();
+        }
+
+        // 修改loadGames函数
+        async function loadGames() {
+            try {
+                // 首先加载翻译和收藏数据
+                await loadTranslations();
+                loadFavorites();
+                
+                updateProgress(0);
+                const response = await fetch('games.json');
+                const reader = response.body.getReader();
+                const contentLength = +response.headers.get('Content-Length');
+                
+                let receivedLength = 0;
+                let chunks = [];
+                
+                while(true) {
+                    const {done, value} = await reader.read();
+                    
+                    if (done) {
+                        break;
+                    }
+                    
+                    chunks.push(value);
+                    receivedLength += value.length;
+                    updateProgress((receivedLength / contentLength) * 100);
+                }
+                
+                const chunksAll = new Uint8Array(receivedLength);
+                let position = 0;
+                for(let chunk of chunks) {
+                    chunksAll.set(chunk, position);
+                    position += chunk.length;
+                }
+                
+                const data = JSON.parse(new TextDecoder().decode(chunksAll));
+                
+                if (!Array.isArray(data) || data.length === 0) {
+                    throw new Error('Invalid games data format');
+                }
+
+                gamesData = data.filter(validateGameData);
+
+                if (gamesData.length === 0) {
+                    throw new Error('No valid games data found');
+                }
+
+                // 初始化虚拟滚动
+                createObserver();
+                updateCategories(gamesData);
+                renderVisibleCards();
+
+                // 添加滚动监听
+                const container = document.getElementById('gamesContainer');
+                container.addEventListener('scroll', debouncedScroll);
+                window.addEventListener('resize', debounce(() => {
+                    virtualScroll.itemHeight = window.innerWidth < 768 ? 450 : 400;
+                    renderVisibleCards();
+                }, 100));
+
+                // 添加搜索功能
+                const searchInput = document.getElementById('searchInput');
+                const debouncedFilter = debounce(() => {
+                    virtualScroll.startIndex = 0;
+                    virtualScroll.endIndex = virtualScroll.visibleItems;
+                    renderVisibleCards();
+                    if (currentSearchTerm.trim()) {
+                        saveSearchHistory(currentSearchTerm);
+                    }
+                }, 300);
+                
+                searchInput.addEventListener('input', (e) => {
+                    currentSearchTerm = e.target.value;
+                    debouncedFilter();
+                });
+
+                // 加载搜索历史和评分数据
+                loadSearchHistory();
+                loadRatings();
+
+                // 添加模态框事件
+                const modal = document.getElementById('gameModal');
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeGameModal();
+                    }
+                });
+
+                document.querySelector('.modal-close').addEventListener('click', closeGameModal);
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        closeGameModal();
+                    }
+                });
+
+                // 隐藏加载动画和进度条
+                document.getElementById('loadingContainer').style.display = 'none';
+                setTimeout(() => {
+                    document.getElementById('progressBar').style.opacity = '0';
+                }, 500);
+
+                // 处理初始路由
+                handleRoute();
+
+                // 初始化加载配置
+                loadConfig.currentlyLoaded = loadConfig.initialLoad;
+            } catch (error) {
+                console.error('Error loading games:', error);
+                document.getElementById('loadingContainer').style.display = 'none';
+                document.getElementById('progressBar').style.opacity = '0';
+                const container = document.getElementById('gamesGrid');
+                container.innerHTML = `
+                    <div class="no-results visible">
+                        <div class="no-results-icon">⚠️</div>
+                        <div>${t('loading', 'errors')}</div>
+                        <div style="font-size: 14px; margin-top: 10px;">${t('refresh', 'errors')}</div>
+                    </div>
+                `;
+            }
+        }
+
+        // 注册Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
+        // 处理安装提示
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // 检查是否已经显示过提示
+            const hasShownPrompt = localStorage.getItem('installPromptShown');
+            if (!hasShownPrompt) {
+                document.getElementById('installPrompt').classList.add('visible');
+            }
+        });
+
+        // 处理安装按钮点击
+        document.getElementById('installYes').addEventListener('click', async () => {
+            const prompt = document.getElementById('installPrompt');
+            prompt.classList.remove('visible');
+            
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const result = await deferredPrompt.userChoice;
+                
+                if (result.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                }
+                deferredPrompt = null;
+            }
+            
+            localStorage.setItem('installPromptShown', 'true');
+        });
+
+        // 处理取消按钮点击
+        document.getElementById('installNo').addEventListener('click', () => {
+            document.getElementById('installPrompt').classList.remove('visible');
+            localStorage.setItem('installPromptShown', 'true');
+        });
+
+        // 检测是否在PWA中运行
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+            document.getElementById('installPrompt').style.display = 'none';
+        }
+
+        // 加载翻译文件
+        async function loadTranslations() {
+            try {
+                const response = await fetch('translations.json');
+                translations = await response.json();
+                
+                // 获取保存的语言设置
+                const savedLang = localStorage.getItem('preferredLanguage');
+                if (savedLang && translations[savedLang]) {
+                    currentLanguage = savedLang;
+                } else {
+                    // 使用浏览器语言
+                    const browserLang = navigator.language.startsWith('zh') ? 'zh' : 'en';
+                    currentLanguage = browserLang;
+                }
+                
+                updatePageLanguage();
+            } catch (error) {
+                console.error('Error loading translations:', error);
+            }
+        }
+
+        // 切换语言
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'zh' : 'en';
+            localStorage.setItem('preferredLanguage', currentLanguage);
+            updatePageLanguage();
+        }
+
+        // 获取翻译文本
+        function t(key, section = null) {
+            try {
+                const lang = translations[currentLanguage];
+                if (section) {
+                    return lang[section][key] || key;
+                }
+                return lang[key] || key;
+            } catch (e) {
+                return key;
+            }
+        }
+
+        // 更新页面语言
+        function updatePageLanguage() {
+            // 更新HTML lang属性
+            document.documentElement.lang = currentLanguage;
+            
+            // 更新标题
+            document.title = t('title');
+            document.querySelector('h1').textContent = t('title');
+            
+            // 更新搜索框
+            document.getElementById('searchInput').placeholder = t('placeholder', 'search');
+            
+            // 更新语言切换按钮
+            document.getElementById('languageText').textContent = t('switch', 'language');
+            
+            // 更新分类
+            updateCategories(gamesData);
+            
+            // 更新无结果提示
+            const noResults = document.querySelector('.no-results');
+            noResults.innerHTML = `
+                <div class="no-results-icon">🔍</div>
+                <div>${t('noResults', 'search')}</div>
+                <div style="font-size: 14px; margin-top: 10px;">${t('tryAdjusting', 'search')}</div>
+            `;
+            
+            // 更新安装提示
+            document.querySelector('.install-text').textContent = t('prompt', 'install');
+            document.getElementById('installYes').textContent = t('yes', 'install');
+            document.getElementById('installNo').textContent = t('no', 'install');
+            
+            // 更新模态框
+            const modal = document.getElementById('gameModal');
+            modal.querySelector('.modal-close').setAttribute('aria-label', t('close', 'modal'));
+            const ratingTitle = modal.querySelector('.rating-title');
+            ratingTitle.childNodes[0].textContent = t('rateThis', 'modal');
+            
+            // 更新星级评分
+            updateStarRating(currentGameId);
+            
+            // 更新游戏卡片
+            renderVisibleCards();
+        }
+
+        // 添加语言切换事件监听
+        document.getElementById('languageSwitch').addEventListener('click', toggleLanguage);
+
+        // 更新虚拟滚动范围
+        function updateVirtualScroll() {
+            const container = document.getElementById('gamesContainer');
+            const scrollTop = container.scrollTop;
+            const containerHeight = container.clientHeight;
+            
+            // 计算可见范围的起始和结束索引
+            const startIndex = Math.floor(scrollTop / virtualScroll.itemHeight);
+            const endIndex = Math.min(
+                Math.ceil((scrollTop + containerHeight) / virtualScroll.itemHeight) + 5,
+                gamesData.length
+            );
+            
+            // 如果范围变化，重新渲染
+            if (startIndex !== virtualScroll.startIndex || endIndex !== virtualScroll.endIndex) {
+                virtualScroll.startIndex = Math.max(0, startIndex - 5);
+                virtualScroll.endIndex = endIndex;
+                renderVisibleCards();
+            }
+        }
+
+        // 获取当前列数
+        function getColumnsCount() {
+            return window.innerWidth < 768 ? 1 : Math.floor(window.innerWidth / 350);
+        }
+
+        // 获取过滤后的游戏列表
+        function getFilteredGames() {
+            const term = currentSearchTerm.toLowerCase();
+            return gamesData.filter(game => {
+                if (!validateGameData(game)) return false;
+                
+                const searchableText = `${game.title} ${game.description}`.toLowerCase();
+                const matchesSearch = searchableText.includes(term);
+                
+                // 处理收藏分类
+                if (selectedCategories.has('Favorites')) {
+                    return matchesSearch && favoriteGames.has(game.title);
+                }
+                
+                const matchesCategory = selectedCategories.size === 0 || selectedCategories.has(game.tags);
+                return matchesSearch && matchesCategory;
+            });
+        }
+
+        // 更新进度条
+        function updateProgress(progress) {
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+
+        // 加载收藏数据
+        function loadFavorites() {
+            try {
+                const saved = localStorage.getItem('favoriteGames');
+                favoriteGames = new Set(saved ? JSON.parse(saved) : []);
+            } catch (e) {
+                console.warn('Failed to load favorites:', e);
+                favoriteGames = new Set();
+            }
+        }
+
+        // 保存收藏数据
+        function saveFavorites() {
+            try {
+                localStorage.setItem('favoriteGames', JSON.stringify([...favoriteGames]));
+            } catch (e) {
+                console.warn('Failed to save favorites:', e);
+            }
+        }
+
+        // 切换收藏状态
+        function toggleFavorite(event, gameTitle) {
+            event.stopPropagation(); // 阻止事件冒泡到卡片点击
+
+            const btn = event.currentTarget;
+            const isFavorite = favoriteGames.has(gameTitle);
+
+            if (isFavorite) {
+                favoriteGames.delete(gameTitle);
+                btn.classList.remove('active');
+                btn.querySelector('i').className = 'fa-regular fa-star';
+            } else {
+                favoriteGames.add(gameTitle);
+                btn.classList.add('active');
+                btn.querySelector('i').className = 'fa-solid fa-star';
+            }
+
+            saveFavorites();
+            updateCategories(gamesData); // 更新分类统计
+            
+            // 如果当前在收藏分类下，需要重新渲染
+            if (selectedCategories.has('Favorites')) {
+                renderVisibleCards();
+            }
+
+            // 记录分析事件
+            if (analyticsEnabled) {
+                gtag('event', isFavorite ? 'unfavorite_game' : 'favorite_game', {
+                    game_title: gameTitle
+                });
+            }
+        }
+
+        loadGames();
+    </script>
+</body>
+</html> 
